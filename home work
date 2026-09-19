@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    string group;
+    string speciality;
+
+public:
+    void setName(string n) {
+        name = n;
+    }
+
+    void setGroup(string g) {
+        group = g;
+    }
+
+    void setSpeciality(string s) {
+        speciality = s;
+    }
+
+    string getName() {
+        return name;
+    }
+
+    string getGroup() {
+        return group;
+    }
+
+    string getSpeciality() {
+        return speciality;
+    }
+
+    void printStudent() {
+        cout << name << endl;
+        cout << group << endl;
+        cout << speciality << endl;
+    }
+
+    void changeGroup(string newGroup) {
+        group = newGroup;
+    }
+};
+
+int main() {
+    Student student;
+
+    student.setName("Kolya");
+    student.setGroup("KHK-22");
+    student.setSpeciality("Computer Science");
+
+    student.printStudent();
+
+    student.changeGroup("KHK-22");
+
+    cout << "New group: " << student.getGroup() << endl;
+
+    return 0;
+}
