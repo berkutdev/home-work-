@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Мини-игра</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #player {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+      }
+
+      #target {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(255, 0, 255);
+        border-radius: 50%;
+        position: absolute;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      #trap {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(255, 0, 0);
+        border-radius: 50%;
+        position: absolute;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      #message {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        justify-content: center;
+        color: green;
+      }
+
+      #gameover {
+        display:flex;
+        color: white;
+        font-size: larger;
+        text-align: center;
+        justify-content: center;
+
+        body {
+            background-color: red;
+        }
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <div id="player"></div>
+    <div id="gameover"></div>
+    <div id="target"></div>
+    <div id="trap"></div>
+    <div id="message"></div>
+
+    <script>
+      const player = document.getElementById("player");
+      const target = document.getElementById("target");
+      const message = document.getElementById("message");
+      const trap = document.getElementById("trap");
+      let gameover = document.getElementById("gameover");
+      let score = 0;
+      let x = 100;
+      let y = 100;
+      const step = 50;
+
+      
+      function moveTarget() {
+        const maxX = window.innerWidth - 40;
+        const maxY = window.innerHeight - 40;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        target.style.left = randomX + "px";
+        target.style.top = randomY + "px";
+      }
+
+      function moveTrap() {
+        let maxX = window.innerWidth - 50;
+        let maxY = window.innerHeight - 50;
+
+        trap.style.left = Math.random() * maxX + "px";
+        trap.style.top = Math.random() * maxY + "px";
+      }
+
+      moveTarget();
+      moveTrap();
+
+      function checkCollisionTr() {
+        const i = player.getBoundingClientRect();
+        const o = trap.getBoundingClientRect();
+
+        if (
+          i.left < o.right &&
+          i.right > o.left &&
+          i.top < o.bottom &&
+          i.bottom > o.top
+        ) {
+          score -= score;
+          message.textContent = `Поразка! Счет: ${score}`;
+          console.log(score);
+          setTimeout(() => {
+            message.textContent = "";
+          }, 1000);
+
+          
+
+          moveTrap();
+        }
+      }
+
+      
+      function checkCollision() {
+        if (gameOver = false) {
+            return;
+        }
+
+        let p = player.getBoundingClientRect();
+        let t = target.getBoundingClientRect();
+        let tr = trap.getBoundingClientRect();
+
+        if (
+          p.left < tr.right &&
+          p.right > tr.left &&
+          p.top < tr.bottom &&
+          p.bottom > tr.top
+        ) {
+          gameOver = true;
+
+          message.textContent = "Очки: " + score;
+          message.style.color = "black";
+
+          return;
+        }
+
+        if (
+          p.left < t.right &&
+          p.right > t.left &&
+          p.top < t.bottom &&
+          p.bottom > t.top
+        ) {
+          score++;
+          message.textContent = "Очки: " + score;
+
+          moveTarget();
+          moveTrap();
+        }
+      }
+
+      
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowUp") {
+          y -= step;
+        }
+
+        if (event.key === "ArrowDown") {
+          y += step;
+        }
+
+        if (event.key === "ArrowLeft") {
+          x -= step;
+        }
+
+        if (event.key === "ArrowRight") {
+          x += step;
+        }
+
+        player.style.left = x + "px";
+        player.style.top = y + "px";
+
+        checkCollision();
+        checkCollisionTr();
+      });
+    </script>
+  </body>
+</html>
