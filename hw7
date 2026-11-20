@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #colorOutput {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="colorOutput">
+    </div>
+
+    <script>
+        let colorOutput = document.querySelector("#colorOutput");
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key.toLowerCase() === "g") {
+                colorOutput.style.backgroundColor = "green";
+            }
+
+            if (event.key.toLowerCase() === "r") {
+                colorOutput.style.backgroundColor = "red";
+            }
+
+            if (event.key.toLowerCase() === "b") {
+                colorOutput.style.backgroundColor = "blue";
+            }
+        });
+    </script>
+</body>
+
+</html>
+hw2
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#output").textContent = "Hello world";
+        });
+    </script>
+</head>
+
+<body>
+    <div id="output">
+
+    </div>
+</body>
+
+</html>
+hw3
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 03</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        let divs = document.querySelectorAll("div");
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.ctrlKey && event.key.toLowerCase() === "a") {
+                event.preventDefault();
+
+                divs.forEach(function (div) {
+                    div.style.border = "3px solid red";
+                });
+            }
+
+            if (event.key === "1") {
+                divs[0].style.border = "3px solid red";
+            }
+
+            if (event.key === "2") {
+                divs[1].style.border = "3px solid red";
+            }
+
+            if (event.key === "3") {
+                divs[2].style.border = "3px solid red";
+            }
+
+        });
+    </script>
+</body>
+
+</html>
+hw4    
