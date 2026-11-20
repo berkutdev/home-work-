@@ -1,0 +1,102 @@
+#pragma once
+
+template<class T1, class T2>
+class Person {
+	T1 first;
+	T2 second;
+	double* grades;
+public:
+	Person(T1 a, T2 b);
+	void Init(T1 a, T2 b);
+	void Print();
+	~Person();
+
+	T1 GetFirst();
+	void SetFirst(T1 value);
+
+	T2 GetSecond();
+	void SetSecond(T2 value);
+};
+
+template<class T1, class T2>
+Person<T1, T2>::Person(T1 a, T2 b)
+{
+	Init(a, b);
+}
+
+template<class T1, class T2>
+void Person<T1, T2>::Init(T1 a, T2 b)
+{
+	first = a;
+	second = b;
+
+	grades = new double[5];
+
+	for (int i = 0; i < 5; i++)
+	{
+		grades[i] = rand() % 10;
+	}
+}
+
+template<class T1, class T2>
+void Person<T1, T2>::Print()
+{
+	cout << "First: " << first <<endl;
+	cout << "Second: " << second << endl;
+
+	cout << "Grades: ";
+	for (int i = 0; i < 5; i++)
+	{
+		cout << grades[i] << " ";
+	}
+
+	cout << endl;
+}
+
+template<class T1, class T2>
+Person<T1, T2>::~Person()
+{
+	delete[] grades;
+}
+
+template<class T1, class T2>
+T1 Person<T1, T2>::GetFirst()
+{
+	return first;
+}
+
+template<class T1, class T2>
+void Person<T1, T2>::SetFirst(T1 value)
+{
+	first = value;
+}
+
+template<class T1, class T2>
+T2 Person<T1, T2>::GetSecond()
+{
+	return second;
+}
+
+template<class T1, class T2>
+void Person<T1, T2>::SetSecond(T2 value)
+{
+	second = value;
+}
+
+cpp
+#include "main.h"
+
+int main()
+{
+    Person<string, int> obj1("egor", 22);
+    Person<int, string> obj2(21, "petya");
+    Person<string, string> obj3("egor", "petya");
+
+    obj1.Print();
+    cout << endl;
+
+    obj2.Print();
+    cout << std;
+
+    obj3.Print();
+}
