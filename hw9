@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class CPU {
+public:
+    void Print() {
+        cout << "CPU: Intel icore 5" << endl;
+    }
+};
+
+class SSD {
+public:
+    void Print() {
+        cout << "SSD: Samsung 1 tb" << endl;
+    }
+};
+
+class RAM {
+public:
+    void Print() {
+        cout << "RAM: 32 GB" << endl;
+    }
+};
+
+class Mouse {
+public:
+    void Print() {
+        cout << "Mouse: Logitech" << endl;
+    }
+};
+
+class Web {
+public:
+    void Print() {
+        cout << "Web: sony" << endl;
+    }
+};
+
+class Laptop {
+public:
+    CPU cpu;
+    SSD ssd;
+    RAM ram;
+
+    Mouse* mouse;
+    Web* web;
+
+    Laptop() {
+        mouse = nullptr;
+        web = nullptr;
+    }
+
+    void SetMouse(Mouse* m) {
+        mouse = m;
+    }
+
+    void SetWeb(Web* w) {
+        web = w;
+    }
+
+    void Print() {
+        cout << "Laptop asus" << endl;
+
+        cpu.Print();
+        ssd.Print();
+        ram.Print();
+
+        if (mouse != nullptr)
+            mouse->Print();
+
+        if (web != nullptr)
+            web->Print();
+    }
+};
+
+int main() {
+    Mouse mouse;
+    Web web;
+    Laptop laptop;
+
+    laptop.SetMouse(&mouse);
+    laptop.SetWeb(&web);
+
+    laptop.Print();
+
+    return 0;
+}
